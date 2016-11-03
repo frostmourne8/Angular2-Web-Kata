@@ -17,10 +17,14 @@ export class WishlistItem {
     public slot: ItemSlot;
     public item: Item;
     public collected: boolean;    
+    public selected: boolean;
+    public highlighted: boolean;
 
     constructor(slot: ItemSlot, item?: Item, collected?: boolean) {
         this.slot = slot;
         this.item = item;
         this.collected = collected || false;
+        this.selected = false;
+        this.highlighted = false;
     }
 }

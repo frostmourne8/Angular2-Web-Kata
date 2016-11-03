@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
+
 import { WishlistItem } from 'wishlist/model';
+import { Item } from 'item/model';
+
+import { ItemDataService } from 'item/item-data.service';
 
 @Component({
   selector: 'wishlist-item',
@@ -9,11 +13,10 @@ import { WishlistItem } from 'wishlist/model';
 export class WishlistItemComponent {
 
     public item: WishlistItem;
-    public selected: boolean;
-    public highlighted: boolean;
 
-    constuctor() {
-        this.selected = false;
-        this.highlighted = false;
+    constructor(private itemDataService: ItemDataService) { }
+
+    public iconImage(item: Item): URL {
+        return this.itemDataService.itemIcon(item);
     }
  }

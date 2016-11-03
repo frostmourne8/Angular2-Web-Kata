@@ -1,8 +1,8 @@
-import { NgModule }      from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { ProfileImageComponent } from 'character/profile-image.component';
 
 @NgModule({
-  declarations: [ ProfileImageComponent ]
+    declarations: [ProfileImageComponent]
 })
 export class CharacterModule { }

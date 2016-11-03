@@ -5,40 +5,22 @@
     </div>
 
     <div id="radial_menu" class="centered">
-        <div class="profile_image" style="background: url({{character.image}}) center;"></div>
+        <profile-image [character]="character"></profile-image>
 
-        <div ng-repeat="menuItem in menuItems" class="menu_item centered menu_item_animation" ng-class="{highlight: menuItem.highlight}" open-on-load>
-            <div ng-click="menuItemClicked(menuItem);$event.stopPropagation();"
-                 ng-mouseenter="menuItemMouseOver(menuItem)"
-                 ng-mouseleave="menuItemMouseOut(menuItem)">
+        <wishlist-item
+            *ngFor="#wishlistItem of wishlist.items"
+            [item]="wishlistItem"
+            (click)="selected(wishlistItem)"
+            (mouseenter)="hovered(wishlistItem)"
+            (mouseleave)="unhovered(wishlistItem)">
+        </wishlist-item>
 
-                <img class="menu_item_icon circle" ng-src="{{menuItem.icon}}"/>
-                <img ng-if="menuItem.isCollected" class="collected_menu_item_check" src="images/checkmark.png"/>
-            </div>
-        </div>
-
-        <div ng-show="selectedMenuItem" class="item_select_container">
-            <div class="item_selection">
-                <div class="item_icon">
-                    <img ng-if="newItemMatch" ng-src="{{getItemIcon(newItemMatch);}}" class="item_icon"/>
-                    <img ng-if="!newItemMatch" src="images/items/unknown_item.png"/>
-                </div>
-
-                <input type="text" ng-model="newItemName"
-                       ng-change="itemSelectTextChanged(newItemName)"
-                       typeahead-on-select="itemSelected($item)"
-                       typeahead="item.name for item in potentialNewItems | filter:$viewValue | limitTo:5"
-                       placeholder="Enter an item name"
-                       class="form-control">
-                
-                <div class="item_selection_button_container">
-                    <button ng-click="acceptItemClicked()" type="button" class="btn btn-primary">Accept</button>
-                    <label ng-model="selectedMenuItem.isCollected" ng-click="itemCollectedClicked" type="button" class="btn btn-success" btn-checkbox>
-                        <img ng-if="selectedMenuItem.isCollected" class="collected_btn_check" src="images/checkmark.png"/><span>Collected</span>
-                    </label>
-                    <button ng-click="clearItemClicked()" type="button" class="btn btn-danger">Clear</button>
-                </div>
-            </div>
+        <div class="item_select_container">
+            <wishlist-search
+                #search
+                [item]="selectedItem"
+                [visible]="selectedItem !== undefined">
+            </wishlist-search>
         </div>
 
         <div ng-show="selectedMenuItem.item && (!hoveredItem || hoveredItem === selectedMenuItem.item)"

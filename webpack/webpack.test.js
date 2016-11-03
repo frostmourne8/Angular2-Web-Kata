@@ -7,49 +7,56 @@ const commonConfig = require('./webpack.common');
 
 module.exports = webpackMerge(commonConfig, {
 
-  devtool: 'inline-source-map',
+    devtool: 'inline-source-map',
 
-  resolve: {
-    alias: {
-      'tests': path.resolve(commonConfig.rootDir, 'tests')
+    resolve: {
+        alias: {
+            'tests': path.resolve(commonConfig.rootDir, 'tests')
+        }
+    },
+
+    module: {
+        preLoaders: [
+            lintLoader()
+        ],
+        loaders: [
+            testTranspileLoader()
+        ],
+        postLoaders: [
+            coverageLoader()
+        ]
+    },
+
+    tslint: {
+        emitErrors: true
     }
-  },
+});
 
-  module: {
-    preLoaders: [
-      { exclude: /node_modules/, loader: 'tslint', test: /\.ts$/ }
-    ],
-    loaders: [
-      {
-          test: /\.ts$/,
-          loader: 'awesome-typescript-loader',
-          exclude: [/node_modules/],
-          query: {
-            // use inline sourcemaps for "karma-remap-coverage" reporter
+function lintLoader() {
+    return { exclude: /node_modules/, loader: 'tslint', test: /\.ts$/ };
+}
+
+function testTranspileLoader() {
+    return {
+        test: /\.ts$/,
+        loader: 'awesome-typescript-loader',
+        exclude: [/node_modules/],
+        query: {
             sourceMap: false,
             inlineSourceMap: true,
             compilerOptions: {
-
-              // Remove TypeScript helpers to be injected
-              // below by DefinePlugin
-              removeComments: true
-
+                removeComments: true
             }
-          }          
-        },
-    ],
-    postLoaders: [
-      {
-        test: /\.ts$/,
-        loader: 'istanbul-instrumenter-loader',
-        include: [
-          /public/
-        ]
-      }
-    ]
-  },
+        }
+    }
+}
 
-  tslint: {
-    emitErrors: true
-  }
-});
+function coverageLoader() {
+    return {
+                test: /\.ts$/,
+                loader: 'istanbul-instrumenter-loader',
+                include: [
+                    /public/
+                ]
+            };
+}
