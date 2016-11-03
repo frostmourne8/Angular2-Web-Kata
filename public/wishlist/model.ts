@@ -1,28 +1,26 @@
-import { Character, Item, ItemType } from 'app/model';
+import { Item, ItemType, ItemSlot, ITEM_SLOTS } from 'item/model';
+import { Character } from 'character/model';
 
-export class WishList {
+export class Wishlist {
 
-    private items: Map<ItemType, Item>;
-    private collected: Map<ItemType, boolean>;
+    public items: Array<WishlistItem>;
 
-    constructor(private character: Character) {
-        this.items = new Map<ItemType, Item>();
-        this.collected = new Map<ItemType, boolean>();
+    constructor() {
+        this.items = Object.values(ITEM_SLOTS).map((slot) => {
+            return new WishlistItem(slot);
+        });
     }
+}
 
-    public addItem(item: Item) {
-        this.items.set(item.type, item);
-    }
+export class WishlistItem {
 
-    public itemForType(type: ItemType): Item {
-        return this.items.get(type);
-    }
+    public slot: ItemSlot;
+    public item: Item;
+    public collected: boolean;    
 
-    public setCollected(type: ItemType, collected: boolean) {
-        this.collected.set(type, collected);
-    }
-
-    public isCollected(type: ItemType): boolean {
-        return this.collected.get(type);
+    constructor(slot: ItemSlot, item?: Item, collected?: boolean) {
+        this.slot = slot;
+        this.item = item;
+        this.collected = collected || false;
     }
 }

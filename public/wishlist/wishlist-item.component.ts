@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { Item, ItemType } from 'app/model';
+import { WishlistItem } from 'wishlist/model';
 
 @Component({
   selector: 'wishlist-item',
-  inputs: ['type'],
+  inputs: ['item'],
   templateUrl: 'wishlist-item.html'
 })
 export class WishlistItemComponent {
 
-    public type: ItemType;
-    public item: Item;
+    public item: WishlistItem;
+    public selected: boolean;
+    public highlighted: boolean;
+
+    constuctor() {
+        this.selected = false;
+        this.highlighted = false;
+    }
  }

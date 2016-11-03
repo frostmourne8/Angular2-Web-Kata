@@ -1,4 +1,4 @@
-import { Item } from 'app/model';
+import { Item } from 'item/model';
 
 export class Boss {
     constructor(public name: string, public items: Array<Item>, public image: URL) {}
