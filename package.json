@@ -1,5 +1,5 @@
 {
-  "name": "angular2-starter",
+  "name": "angular2-web-kata",
   "version": "0.0.0",
   "description": "An base project to use from future angular2 applications",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/frostmourne8/Angular2-Starter.git"
+    "url": "https://github.com/frostmourne8/Angular2-Web-Kata.git"
   },
   "license": "MIT",
   "dependencies": {
