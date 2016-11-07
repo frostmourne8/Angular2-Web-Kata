@@ -9,9 +9,12 @@ const rootDir = path.resolve(__dirname, '..');
 const appDir = path.resolve(rootDir, 'public');
 const bundlesDir = path.resolve(appDir, 'bundles');
 
+const resourcePattern = /\.(png|jpe?g|gif|svg)$/;
+
 module.exports = {
 
     rootDir: rootDir,
+    resourcePattern: resourcePattern,
 
     resolve: {
         extensions: ['', '.ts', '.js'],

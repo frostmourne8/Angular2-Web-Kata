@@ -20,6 +20,7 @@ module.exports = webpackMerge(commonConfig, {
             lintLoader()
         ],
         loaders: [
+            assets(),
             testTranspileLoader()
         ],
         postLoaders: [
@@ -34,6 +35,13 @@ module.exports = webpackMerge(commonConfig, {
 
 function lintLoader() {
     return { exclude: /node_modules/, loader: 'tslint', test: /\.ts$/ };
+}
+
+function assets() {
+    return {
+        test: commonConfig.resourcePattern,
+        loader: 'null'
+    };
 }
 
 function testTranspileLoader() {
