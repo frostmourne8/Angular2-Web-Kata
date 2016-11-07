@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
+require('images/wow-world-of-warcraft.jpg');
+
 @Component({
     selector: 'body',
     templateUrl: 'app.html',

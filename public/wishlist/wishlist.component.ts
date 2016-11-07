@@ -1,4 +1,4 @@
-import { Component, ViewChild, ViewChildren, QueryList } from '@angular/core';
+import { Component, ViewChild, ViewChildren, QueryList, ViewEncapsulation } from '@angular/core';
 
 import { Item } from 'item/model';
 import { Character } from 'character/model';
@@ -13,7 +13,8 @@ import { ItemInfoComponent } from 'item/item-info.component';
 @Component({
     selector: 'wishlist',
     templateUrl: 'wishlist.html',
-    styleUrls: ['wishlist.css', 'wishlist-animation.css']
+    styleUrls: ['wishlist.css', 'wishlist-animation.css'],
+    encapsulation: ViewEncapsulation.None
 })
 export class WishlistComponent {
 

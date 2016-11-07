@@ -7,6 +7,8 @@ import { Item, ITEM_SLOTS } from 'item/model';
 
 import { ItemDataService } from 'item/item-data.service';
 
+require('images/items/unknown_item.png');
+
 @Component({
     selector: 'wishlist-search',
     templateUrl: 'wishlist-search.html'

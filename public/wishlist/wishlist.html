@@ -8,7 +8,10 @@
         <profile-image [character]="character"></profile-image>
 
         <wishlist-item
-            *ngFor="let wishlistItem of wishlist.items"
+            *ngFor="let wishlistItem of wishlist.items; let i=index"            
+            [class.highlight]="wishlistItem.highlighted"
+            [radial-item]="i"
+            [radial-count]="wishlist.items.length"
             [attr.id]="'wishlist_' + wishlistItem.slot.id"
             [item]="wishlistItem"
             (click)="selected(wishlistItem)"
