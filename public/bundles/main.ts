@@ -5,6 +5,8 @@ import { enableProdMode } from '@angular/core';
 
 import 'rxjs/Rx';
 
+require('bootstrap-webpack');
+
 if (process.env.ENV === 'production') {
   enableProdMode();
 }

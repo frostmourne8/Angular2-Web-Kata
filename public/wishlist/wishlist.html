@@ -8,7 +8,7 @@
         <profile-image [character]="character"></profile-image>
 
         <wishlist-item
-            *ngFor="let wishlistItem of wishlist.items; let i=index"            
+            *ngFor="let wishlistItem of wishlist.items | wishlistOrder; let i=index"            
             [class.highlight]="wishlistItem.highlighted"
             [radial-item]="i"
             [radial-count]="wishlist.items.length"

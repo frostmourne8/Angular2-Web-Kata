@@ -1,7 +1,7 @@
 <div class="item_selection" [hidden]="!visible">
     <div class="item_icon">
-        <img ng-if="newItemMatch" [src]="getItemIcon(newItemMatch)" class="item_icon"/>
-        <img ng-if="!newItemMatch" src="/images/items/unknown_item.png"/>
+        <img *ngIf="newItemMatch" [src]="getItemIcon(newItemMatch)" class="item_icon"/>
+        <img *ngIf="!newItemMatch" src="/images/items/unknown_item.png"/>
     </div>
 
     <input type="text"

@@ -20,8 +20,6 @@ TYPE_ICONS.set(ITEM_TYPES.OFF_HAND, require('images/items/shield.png'));
 TYPE_ICONS.set(ITEM_TYPES.TRINKET, require('images/items/trinket.png'));
 TYPE_ICONS.set(ITEM_TYPES.RING, require('images/items/ring.png'));
 
-const whatItIs = require('images/items/helm.png');
-
 @Injectable()
 export class ItemDataService {
 
@@ -35,9 +33,5 @@ export class ItemDataService {
 
     public itemsForType(type: ItemType): Observable<Array<Item>> {
         return null;
-    }
-
-    private static initializeTYPE_ICONS() {
-        
     }
 }

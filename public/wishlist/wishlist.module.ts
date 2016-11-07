@@ -10,6 +10,7 @@ import { WishlistService } from 'wishlist/wishlist.service';
 import { WishlistComponent } from 'wishlist/wishlist.component';
 import { WishlistItemComponent } from 'wishlist/wishlist-item.component';
 import { WishlistSearchComponent } from 'wishlist/wishlist-search.component';
+import { WishlistOrderPipe } from 'wishlist/wishlist-order.pipe';
 import { RadialItemDirective } from 'wishlist/radial-item.directive';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { RadialItemDirective } from 'wishlist/radial-item.directive';
         WishlistComponent,
         WishlistItemComponent,
         WishlistSearchComponent,
+        WishlistOrderPipe,
         RadialItemDirective
     ],
     exports: [ WishlistComponent ]
