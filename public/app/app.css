@@ -1,4 +1,4 @@
-body, html {
+body {
     height: 100%;
     width: 100%;
     background: url("images/wow-world-of-warcraft.jpg") no-repeat;
@@ -6,6 +6,8 @@ body, html {
     background-color: black;
     background-size: 1420px;
     margin: 0px;
+    min-width: 1300px;
+    min-height: 850px;
 }
 
 .centered {
@@ -17,9 +19,4 @@ body, html {
 
 .circle {
     border-radius: 50%;
-}
-
-.view_container {
-    min-width: 1300px;
-    min-height: 850px;
 }

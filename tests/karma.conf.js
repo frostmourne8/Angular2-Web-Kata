@@ -6,6 +6,7 @@ module.exports = (config) => {
     config.set({
         
         basePath: '',
+        browserNoActivityTimeout: 60 * 1000, //For single runs that include webpack bundling
 
         browsers: ['PhantomJS'],
         frameworks: ['jasmine'],
@@ -15,8 +16,13 @@ module.exports = (config) => {
         },
 
         files: [
-            {pattern: 'karma.entry.js', watched: false}
+            {pattern: 'karma.entry.js', watched: false},
+            {pattern: '../public/images/**/*', included: false, served: true, watched: false}
         ],
+
+        proxies: {
+            "/images/": "/base/public/images/"
+        },
 
         preprocessors: {
             'karma.entry.js': ['coverage', 'webpack', 'sourcemap']

@@ -1,7 +1,7 @@
-<div class="item_selection">
+<div class="item_selection" [hidden]="!visible">
     <div class="item_icon">
         <img ng-if="newItemMatch" [src]="getItemIcon(newItemMatch)" class="item_icon"/>
-        <img ng-if="!newItemMatch" src="images/items/unknown_item.png"/>
+        <img ng-if="!newItemMatch" src="/images/items/unknown_item.png"/>
     </div>
 
     <input type="text"
@@ -13,8 +13,8 @@
     
     <div class="item_selection_button_container">
         <button (click)="acceptItemClicked()" type="button" class="btn btn-primary">Accept</button>
-        <label [(ngModel)]="item.collected" type="button" class="btn btn-success" btn-checkbox>
-            <img *ngIf="item.collected" class="collected_btn_check" src="images/checkmark.png"/><span>Collected</span>
+        <label (click)="collectItemClicked()" type="button" class="btn btn-success" btn-checkbox>
+            <img *ngIf="item && item.collected" class="collected_btn_check" src="/images/checkmark.png"/><span>Collected</span>
         </label>
         <button (click)="clearItemClicked()" type="button" class="btn btn-danger">Clear</button>
     </div>

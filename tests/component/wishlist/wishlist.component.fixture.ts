@@ -1,7 +1,7 @@
 import { ComponentTestFixture } from 'tests/component/component.fixture';
 
 import { WishlistItem } from 'wishlist/model';
-import { ItemSlot } from 'item/model';
+import { ItemSlot, Item } from 'item/model';
 
 import { WishlistModule } from 'wishlist/wishlist.module';
 import { WishlistComponent } from 'wishlist/wishlist.component';
@@ -19,34 +19,47 @@ export class WishlistComponentFixture extends ComponentTestFixture<WishlistCompo
     }
 
     public wishlistItemComponents(): Array<WishlistItemComponent> {
-        return [];
+        return this.component().wishlistItems.toArray();
     }
 
     public profileImage(): ProfileImageComponent {
-        return null;
+        return this.component().profileImage;
     }
 
     public wishlistSearchComponent(): WishlistSearchComponent {
-        return null;
+        return this.component().search;
     }
 
     public wishlistItemForSlot(slot: ItemSlot): WishlistItem {
         return find(this.component().wishlist.items, {slot: slot});
     }
 
+    public setItemToSlot(slot: ItemSlot, item: Item): void {
+        let wishlistItem = this.wishlistItemForSlot(slot);
+        wishlistItem.item = item;
+    }
+
     public selectedItemInfoComponent(): ItemInfoComponent {
-        return null;
+        return this.component().selectedInfo;
     }
 
     public searchItemInfoComponent(): ItemInfoComponent {
-        return null;
+        return this.component().searchInfo;
+    }
+
+    public hoveredItemInfoComponent(): ItemInfoComponent {
+        return this.component().hoveredInfo;
     }
 
     public hoverWishlistItem(item: WishlistItem) {
-        
+        this.hoverElement(this.idForWishlistItem(item));
     }
 
-    public clickWishlistItem(item: WishlistItem) {
+    public clickWishlistItem(item: WishlistItem) {        
+        this.clickElement(this.idForWishlistItem(item));
+    }
 
+    private idForWishlistItem(item: WishlistItem) {
+        return 'wishlist_' + item.slot.id;
     }
 }

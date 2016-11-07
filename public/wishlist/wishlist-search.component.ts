@@ -3,20 +3,20 @@ import { Observable } from 'rxjs/Observable';
 import { startsWith } from 'lodash';
 
 import { WishlistItem } from 'wishlist/model';
-import { Item } from 'item/model';
+import { Item, ITEM_SLOTS } from 'item/model';
 
 import { ItemDataService } from 'item/item-data.service';
 
 @Component({
     selector: 'wishlist-search',
-    inputs: ['item'],
     templateUrl: 'wishlist-search.html'
 })
 export class WishlistSearchComponent {
 
-    public item: WishlistItem;
+    @Input() item: WishlistItem;
+    @Input() visible: boolean;
+
     public newItemMatch: Item;
-    public visible: boolean;
 
     constructor(private itemDataService: ItemDataService) { }
 
@@ -32,11 +32,16 @@ export class WishlistSearchComponent {
         delete this.item.item;
     }
 
-    public search($text: Observable<string>): Observable<Array<Item>> {
+    public collectItemClicked() {
+        this.item.collected = !this.item.collected;
+    }
+
+    //Arrow function must be used here because the typeahead component does not provide 'this' context
+    public search = ($text: Observable<string>): Observable<Array<Item>> => {
         return $text
             .debounceTime(200)
             .distinctUntilChanged()
-            .flatMap(this.executeSearch);
+            .flatMap((this.executeSearch));
     }
 
     public format(item: Item): string {

@@ -1,6 +1,6 @@
 import { Type, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { TestBed, ComponentFixture } from '@angular/core/testing';
+import { TestBed, ComponentFixture, ComponentFixtureAutoDetect, tick } from '@angular/core/testing';
 
 export class ComponentTestFixture<T> {
 
@@ -8,15 +8,20 @@ export class ComponentTestFixture<T> {
 
     constructor(componentModule: Type<any>, componentType: Type<T>) {
         TestBed.configureTestingModule({
-            //imports: [ componentModule ],
-            declarations: [ componentType ]
+            imports: [ componentModule ],
+            providers: [ { provide: ComponentFixtureAutoDetect, useValue: true } ]
         });
 
         this.fixture = TestBed.createComponent(componentType);
+        this.fixture.detectChanges();   
     }
 
     public component(): T {
         return this.fixture.componentInstance;
+    }
+
+    public verify(verifyFunc: () => void): void {
+        this.fixture.whenStable().then(verifyFunc);
     }
 
     protected elementText(id: string): string {
@@ -24,7 +29,11 @@ export class ComponentTestFixture<T> {
     }
 
     protected clickElement(id: string) {
-        this.element(id).nativeElement.click();
+        this.element(id).triggerEventHandler('click', {button: 0});
+    }
+
+    protected hoverElement(id: string) {
+        this.element(id).triggerEventHandler('mouseenter', {});
     }
 
     protected element(id: string): DebugElement {

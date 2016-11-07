@@ -4,7 +4,7 @@
   "description": "An base project to use from future angular2 applications",
   "scripts": {
     "start": "webpack-dev-server --config webpack/webpack.dev.js --inline --progress --port 8080",
-    "test": "karma start",
+    "test": "karma start tests/karma.conf.js",
     "test:single": "karma start tests/karma.conf.js --single-run",
     "build": "rimraf dist && webpack --config webpack/webpack.prod.js --progress --profile --bail"
   },

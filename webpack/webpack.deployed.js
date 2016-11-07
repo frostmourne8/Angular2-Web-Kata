@@ -23,7 +23,6 @@ module.exports = webpackMerge(commonConfig, {
 
     module: {
         loaders: [
-            assets(),
             libraryStyles(),
             applicationCode()
         ]
@@ -48,7 +47,7 @@ function applicationCode() {
 function assets() {
     return {
         test: resourcePattern,
-        loader: 'file?name=assets/[name].[hash].[ext]'
+        loader: 'file?name=[path][name].[ext]&context=/public/'
     };
 }
 

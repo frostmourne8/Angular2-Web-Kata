@@ -1,22 +1,22 @@
 export class ItemType {
 
     public id: string;
-    public icon: URL;
+    public icon: string;
 
-    constructor(id: string, iconUrl: string) {
+    constructor(id: string, iconPath: string) {
         this.id = id;
-        this.icon = new URL(iconUrl);
+        this.icon = iconPath;
     }
 }
 
 export class ItemSlot {
 
-    public name: string;
+    public id: string;
     public type: ItemType;
 
-    constructor(type: ItemType, name?: string) {        
+    constructor(type: ItemType, id?: string) {        
         this.type = type;
-        this.name = name || type.id;
+        this.id = id || type.id;
     }
 }
 
@@ -63,8 +63,8 @@ export const ITEM_SLOTS = {
     PANTS: new ItemSlot(ITEM_TYPES.PANTS),
     WEAPON: new ItemSlot(ITEM_TYPES.WEAPON),
     OFF_HAND: new ItemSlot(ITEM_TYPES.OFF_HAND),
-    TRINKET1: new ItemSlot(ITEM_TYPES.TRINKET, 'Trinket One'),
-    TRINKET2: new ItemSlot(ITEM_TYPES.TRINKET, 'Trinket Two'),
-    RING1: new ItemSlot(ITEM_TYPES.RING, 'Ring One'),
-    RING2: new ItemSlot(ITEM_TYPES.RING, 'Ring Two')
+    TRINKET1: new ItemSlot(ITEM_TYPES.TRINKET, 'Trinket_One'),
+    TRINKET2: new ItemSlot(ITEM_TYPES.TRINKET, 'Trinket_Two'),
+    RING1: new ItemSlot(ITEM_TYPES.RING, 'Ring_One'),
+    RING2: new ItemSlot(ITEM_TYPES.RING, 'Ring_Two')
 }

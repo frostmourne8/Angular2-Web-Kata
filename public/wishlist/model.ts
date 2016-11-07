@@ -1,3 +1,5 @@
+import { values } from 'lodash';
+
 import { Item, ItemType, ItemSlot, ITEM_SLOTS } from 'item/model';
 import { Character } from 'character/model';
 
@@ -6,7 +8,7 @@ export class Wishlist {
     public items: Array<WishlistItem>;
 
     constructor() {
-        this.items = Object.values(ITEM_SLOTS).map((slot) => {
+        this.items = values(ITEM_SLOTS).map((slot) => {
             return new WishlistItem(slot);
         });
     }

@@ -8,7 +8,8 @@
         <profile-image [character]="character"></profile-image>
 
         <wishlist-item
-            *ngFor="#wishlistItem of wishlist.items"
+            *ngFor="let wishlistItem of wishlist.items"
+            [attr.id]="'wishlist_' + wishlistItem.slot.id"
             [item]="wishlistItem"
             (click)="selected(wishlistItem)"
             (mouseenter)="hovered(wishlistItem)"
@@ -19,23 +20,12 @@
             <wishlist-search
                 #search
                 [item]="selectedItem"
-                [visible]="selectedItem !== undefined">
+                [visible]="searchVisible()">
             </wishlist-search>
         </div>
 
-        <div ng-show="selectedMenuItem.item && (!hoveredItem || hoveredItem === selectedMenuItem.item)"
-             ng-bind-html="getItemInfoPane(selectedMenuItem.item)"
-             class="darktip-tooltip-wow item_info centered">
-        </div>
-
-        <div ng-show="hoveredItem && hoveredItem !== selectedMenuItem.item"
-             ng-bind-html="getItemInfoPane(hoveredItem)"
-             class="darktip-tooltip-wow item_info centered">
-        </div>
-
-        <div ng-show="newItemMatch"
-             ng-bind-html="getItemInfoPane(newItemMatch)"
-             class="darktip-tooltip-wow item_info new_item_info centered">
-        </div>
+        <item-info #selectedInfo [item]="item(selectedItem)" [visible]="selectedInfoVisible()" class="centered"></item-info>
+        <item-info #hoveredInfo [item]="item(hoveredItem)" [visible]="hoveredInfoVisible()" class="centered"></item-info>
+        <item-info #searchInfo [item]="search.newItemMatch" [visible]="searchInfoVisible()" class="new_item_info centered"></item-info>
     </div>
 </div>

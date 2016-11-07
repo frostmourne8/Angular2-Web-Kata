@@ -3,8 +3,18 @@ import {Observable} from 'rxjs/Observable';
 
 import { Item, ItemType } from 'item/model';
 
-export interface ItemDataService {
-    itemIcon(item: Item): URL;
-    itemTypeIcon(type: ItemType): URL;
-    itemsForType(type: ItemType): Observable<Array<Item>>;
+@Injectable()
+export class ItemDataService {
+
+    public itemIcon(item: Item): URL {
+        return null;
+    }
+
+    public itemTypeIcon(type: ItemType): URL {
+        return null;
+    }
+
+    public itemsForType(type: ItemType): Observable<Array<Item>> {
+        return null;
+    }
 }

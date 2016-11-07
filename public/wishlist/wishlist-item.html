@@ -1,4 +1,5 @@
 <div [class.highlight]="item.highlighted" class="menu_item centered menu_item_animation">
+    <span>Item</span>
     <img class="menu_item_icon circle" src="{{iconImage(item.item)}}"/>
-    <img *ngIf="item.collected" class="collected_menu_item_check" src="images/checkmark.png"/>
+    <img *ngIf="item.collected" class="collected_menu_item_check" src="/images/checkmark.png"/>
 </div>
