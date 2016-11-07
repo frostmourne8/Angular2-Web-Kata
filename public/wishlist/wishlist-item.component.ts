@@ -15,7 +15,11 @@ export class WishlistItemComponent {
 
     constructor(private itemDataService: ItemDataService) { }
 
-    public iconImage(item: Item): URL {
-        return this.itemDataService.itemIcon(item);
+    public iconImage(item: WishlistItem): string {
+        if(item.item) {
+            return this.itemDataService.itemIcon(item.item); 
+        } else {
+            return this.itemDataService.itemTypeIcon(item.slot.type);
+        }        
     }    
 }

@@ -26,7 +26,7 @@ export class WishlistSearchComponent {
         this.item.item = this.newItemMatch;
     }
 
-    public getItemIcon(item: Item): URL {
+    public getItemIcon(item: Item): string {
         return this.itemDataService.itemIcon(item);
     }
 

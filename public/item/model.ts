@@ -1,11 +1,9 @@
 export class ItemType {
 
     public id: string;
-    public icon: string;
 
-    constructor(id: string, iconPath: string) {
+    constructor(id: string) {
         this.id = id;
-        this.icon = iconPath;
     }
 }
 
@@ -34,20 +32,20 @@ export class Item {
 }
 
 export const ITEM_TYPES = {    
-    HELM: new ItemType('Helm', 'images/items/helm.png'),
-    NECK: new ItemType('Neck', 'images/items/amulet.png'),
-    CHEST: new ItemType('Chest', 'images/items/chest.png'),
-    GLOVES: new ItemType('Gloves', 'images/items/gloves.png'),
-    BRACERS: new ItemType('Bracers', 'images/items/bracers.png'),
-    SHOULDERS: new ItemType('Shoulders', 'images/items/shoulders.png'),
-    CLOAK: new ItemType('Cloak', 'images/items/cloak.png'),
-    BELT: new ItemType('Belt', 'images/items/belt.png'),
-    BOOTS: new ItemType('Boots', 'images/items/boots.png'),
-    PANTS: new ItemType('Pants', 'images/items/pants.png'),
-    WEAPON: new ItemType('Weapon', 'images/items/weapon.png'),
-    OFF_HAND: new ItemType('OffHand', 'images/items/shield.png'),
-    TRINKET: new ItemType('Trinket', 'images/items/trinket.png'),
-    RING: new ItemType('Ring', 'images/items/ring.png')
+    HELM: new ItemType('Helm'),
+    NECK: new ItemType('Neck'),
+    CHEST: new ItemType('Chest'),
+    GLOVES: new ItemType('Gloves'),
+    BRACERS: new ItemType('Bracers'),
+    SHOULDERS: new ItemType('Shoulders'),
+    CLOAK: new ItemType('Cloak'),
+    BELT: new ItemType('Belt'),
+    BOOTS: new ItemType('Boots'),
+    PANTS: new ItemType('Pants'),
+    WEAPON: new ItemType('Weapon'),
+    OFF_HAND: new ItemType('OffHand'),
+    TRINKET: new ItemType('Trinket'),
+    RING: new ItemType('Ring')
 };
 
 export const ITEM_SLOTS = {
