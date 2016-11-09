@@ -18,8 +18,8 @@ export class ItemSlot {
     }
 }
 
-export class Item {
-
+export class ItemIdentifier {
+    
     public id: string;
     public name: string;
     public type: ItemType;
@@ -28,6 +28,21 @@ export class Item {
         this.id = id;
         this.name = name;
         this.type = type;
+    }
+}
+
+export class Item {
+
+    public id: string;
+    public name: string;
+    public type: ItemType;
+    public details: any; //Might add some typing on this if I start consuming it directly
+
+    constructor(identifier: ItemIdentifier, details: any) {
+        this.id = identifier.id;
+        this.name = identifier.name;
+        this.type = identifier.type;
+        this.details = details;
     }
 }
 

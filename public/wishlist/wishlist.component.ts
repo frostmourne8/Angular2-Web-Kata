@@ -36,6 +36,10 @@ export class WishlistComponent {
     }
 
     public selected(item: WishlistItem) {
+        if(this.selectedItem) {
+            this.selectedItem.highlighted = false;
+        }
+        
         this.selectedItem = item;
     }
 

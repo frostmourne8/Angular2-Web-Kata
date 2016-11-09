@@ -5,9 +5,10 @@
     </div>
 
     <input type="text"
-            [(ngModel)]="newItemMatch"
+            (selectItem)="itemSelected($event.item)"
             [ngbTypeahead]="search"
             [resultFormatter]="format"
+            [inputFormatter]="format"
             placeholder="Enter an item name"
             class="form-control">
     

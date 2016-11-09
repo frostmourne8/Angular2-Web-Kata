@@ -9,7 +9,7 @@ const rootDir = path.resolve(__dirname, '..');
 const appDir = path.resolve(rootDir, 'public');
 const bundlesDir = path.resolve(appDir, 'bundles');
 
-const resourcePattern = /\.(png|jpe?g|gif|svg)$/;
+const resourcePattern = /\.(png|jpe?g|gif|svg|ico)$/;
 
 module.exports = {
 

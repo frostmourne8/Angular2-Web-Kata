@@ -13,7 +13,7 @@ module.exports = webpackMerge(deployedConfig, {
     devtool: 'source-map',
 
     output: {
-        path: path.resolve(deployedConfig.rootDir, 'dist'),
+        path: path.resolve(deployedConfig.rootDir, 'server', 'public'),
         publicPath: '/',
         filename: '[name].[hash].js',
         chunkFilename: '[id].[hash].chunk.js'

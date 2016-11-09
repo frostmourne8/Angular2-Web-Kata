@@ -55,6 +55,10 @@ export class WishlistComponentFixture extends ComponentTestFixture<WishlistCompo
         this.hoverElement(this.idForWishlistItem(item));
     }
 
+    public unhoverWishlistItem(item: WishlistItem) {
+        this.unhoverElement(this.idForWishlistItem(item));
+    }
+
     public clickWishlistItem(item: WishlistItem) {        
         this.clickElement(this.idForWishlistItem(item));
     }

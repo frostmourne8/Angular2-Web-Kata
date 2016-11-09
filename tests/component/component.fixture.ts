@@ -36,6 +36,10 @@ export class ComponentTestFixture<T> {
         this.element(id).triggerEventHandler('mouseenter', {});
     }
 
+    protected unhoverElement(id: string) {
+        this.element(id).triggerEventHandler('mouseleave', {});
+    }
+
     protected element(id: string): DebugElement {
         return this.fixture.debugElement.query(By.css('#' + id));
     }

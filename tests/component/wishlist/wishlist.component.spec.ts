@@ -5,7 +5,7 @@ import { WishlistComponentFixture } from './wishlist.component.fixture';
 import { WishlistSearchComponent } from 'wishlist/wishlist-search.component';
 import { ProfileImageComponent } from 'character/profile-image.component';
 import { ItemInfoComponent } from 'item/item-info.component';
-import { ITEM_SLOTS, ItemSlot, Item } from 'item/model';
+import { ITEM_SLOTS, ItemSlot, Item, ItemIdentifier } from 'item/model';
 import { WishlistItem } from 'wishlist/model';
 import { Character } from 'character/model';
 
@@ -120,7 +120,7 @@ describe('WishlistComponent', () => {
 
     it('should display the info panel for the currently selected item in the item search', () => {
         let slot: ItemSlot = ITEM_SLOTS.OFF_HAND;
-        let newItem = new Item('anId', 'aName', slot.type);
+        let newItem = createFakeItem(slot);
         selectItemSlot(slot);
 
         fixture.wishlistSearchComponent().newItemMatch = newItem;
@@ -132,9 +132,55 @@ describe('WishlistComponent', () => {
         });        
     });
 
+    it('should highlight the selected item', () => {
+        let item: WishlistItem = selectItemSlot(ITEM_SLOTS.PANTS);
+
+        fixture.verify(() => {
+            expect(item.highlighted).toBe(true);
+        });
+    });
+
+    it('should highlight the hovered item', () => {
+        let item: WishlistItem = hoverItemSlot(ITEM_SLOTS.PANTS);
+
+        fixture.verify(() => {
+            expect(item.highlighted).toBe(true);
+        });
+    });
+
+    it('should highlight the selected and hovered items if there are both', () => {
+        let selectedItem: WishlistItem = selectItemSlot(ITEM_SLOTS.PANTS);
+        let hoveredItem: WishlistItem = hoverItemSlot(ITEM_SLOTS.NECK);
+
+        fixture.verify(() => {
+            expect(selectedItem.highlighted).toBe(true);
+            expect(hoveredItem.highlighted).toBe(true);
+        });
+    });
+
+    it('should unhighlight a hovered item if it is unhovered', () => {
+        let slot: ItemSlot = ITEM_SLOTS.NECK;
+        let item: WishlistItem = hoverItemSlot(slot);
+        unhoverItemSlot(slot);
+
+        fixture.verify(() => {
+            expect(item.highlighted).toBe(false);
+        });
+    });
+
+    it('should unhighlight the previous selected item when a new item is selected', () => {
+        let selectedItem: WishlistItem = selectItemSlot(ITEM_SLOTS.PANTS);
+        let newSelectedItem: WishlistItem = selectItemSlot(ITEM_SLOTS.HELM);
+
+        fixture.verify(() => {
+            expect(selectedItem.highlighted).toBe(false);
+            expect(newSelectedItem.highlighted).toBe(true);
+        });
+    });
+
     function selectItemSlot(slot: ItemSlot, withItem?: boolean): WishlistItem {
         if(withItem === true) {
-            fixture.setItemToSlot(slot, new Item('anId', 'aName', slot.type));
+            fixture.setItemToSlot(slot, createFakeItem(slot));
         }
 
         let item: WishlistItem = fixture.wishlistItemForSlot(slot);
@@ -145,12 +191,24 @@ describe('WishlistComponent', () => {
 
     function hoverItemSlot(slot: ItemSlot, withItem?: boolean): WishlistItem {
         if(withItem === true) {
-            fixture.setItemToSlot(slot, new Item('anId', 'aName', slot.type));
+            fixture.setItemToSlot(slot, createFakeItem(slot));
         }
 
         let item: WishlistItem = fixture.wishlistItemForSlot(slot);
         fixture.hoverWishlistItem(item);
 
         return item;
+    }
+
+    function unhoverItemSlot(slot: ItemSlot): WishlistItem {
+        let item: WishlistItem = fixture.wishlistItemForSlot(slot);
+        fixture.unhoverWishlistItem(item);
+
+        return item;
+    }
+
+    function createFakeItem(slot: ItemSlot): Item {
+        let identifier = new ItemIdentifier('anId', 'aName', slot.type);
+        return new Item(identifier, {});
     }
 });

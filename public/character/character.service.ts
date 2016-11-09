@@ -8,7 +8,7 @@ const CHARACTER: Character = new Character('159055468', 'Anteaus', 'Alexstrasza-
 export class CharacterService {
 
     public currentCharacter(): Character {
-        //TODO allow switching of CharacterService
+        //TODO allow switching of characters
         return CHARACTER;
     }
 }

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { startsWith } from 'lodash';
 
 import { WishlistItem } from 'wishlist/model';
-import { Item, ITEM_SLOTS } from 'item/model';
+import { Item, ItemIdentifier, ITEM_SLOTS } from 'item/model';
 
 import { ItemDataService } from 'item/item-data.service';
 
@@ -27,6 +27,12 @@ export class WishlistSearchComponent {
         this.item.item = this.newItemMatch;
     }
 
+    public itemSelected(identifier: ItemIdentifier) {
+        this.itemDataService.itemInfo(identifier).subscribe((item: Item) => {
+            this.newItemMatch = item;
+        });
+    }
+
     public getItemIcon(item: Item): string {
         return this.itemDataService.itemIcon(item);
     }
@@ -40,24 +46,26 @@ export class WishlistSearchComponent {
     }
 
     //Arrow function must be used here because the typeahead component does not provide 'this' context
-    public search = ($text: Observable<string>): Observable<Array<Item>> => {
+    public search = ($text: Observable<string>): Observable<Array<ItemIdentifier>> => {
         return $text
             .debounceTime(200)
             .distinctUntilChanged()
-            .flatMap((this.executeSearch));
+            .flatMap((term: string) => {
+                return this.executeSearch(term);
+            });
     }
 
-    public format(item: Item): string {
+    public format(item: ItemIdentifier): string {
         return item.name;
     }
 
-    private executeSearch(term: string): Observable<Array<Item>> {
-        let itemType = this.item.item.type;
+    private executeSearch(term: string): Observable<Array<ItemIdentifier>> {
+        let itemType = this.item.slot.type;
         return this.itemDataService.itemsForType(itemType)
             .filter(this.filterByTerm(term));
     }
 
-    private filterByTerm(term: string): (items: Item[], index: number) => boolean {
+    private filterByTerm(term: string): (items: ItemIdentifier[], index: number) => boolean {
         return (items: Item[], index: number) => {
             let itemName = items[index].name;
             return startsWith(itemName, term);

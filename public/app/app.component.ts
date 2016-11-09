@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 require('images/wow-world-of-warcraft.jpg');
+require('images/favicon.ico');
 
 @Component({
     selector: 'body',
