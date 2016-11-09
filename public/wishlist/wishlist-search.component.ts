@@ -19,9 +19,19 @@ export class WishlistSearchComponent {
     @Input() item: WishlistItem;
     @Input() visible: boolean;
 
+    public searchTerm: string;
+    public dataSource: Observable<Array<ItemIdentifier>>;
     public newItemMatch: Item;
 
-    constructor(private itemDataService: ItemDataService) { }
+    constructor(private itemDataService: ItemDataService) { 
+        this.dataSource = Observable.create((observer: any) => {
+            observer.next(this.searchTerm);
+        }).debounceTime(200)
+          .distinctUntilChanged()
+          .flatMap((term: string) => {
+              return this.executeSearch(term);
+          });
+    }
 
     public acceptItemClicked() {
         this.item.item = this.newItemMatch;
@@ -45,30 +55,16 @@ export class WishlistSearchComponent {
         this.item.collected = !this.item.collected;
     }
 
-    //Arrow function must be used here because the typeahead component does not provide 'this' context
-    public search = ($text: Observable<string>): Observable<Array<ItemIdentifier>> => {
-        return $text
-            .debounceTime(200)
-            .distinctUntilChanged()
-            .flatMap((term: string) => {
-                return this.executeSearch(term);
-            });
-    }
-
-    public format(item: ItemIdentifier): string {
-        return item.name;
-    }
-
     private executeSearch(term: string): Observable<Array<ItemIdentifier>> {
         let itemType = this.item.slot.type;
         return this.itemDataService.itemsForType(itemType)
-            .filter(this.filterByTerm(term));
+            .map(this.filterByTerm(term));
     }
 
-    private filterByTerm(term: string): (items: ItemIdentifier[], index: number) => boolean {
-        return (items: Item[], index: number) => {
-            let itemName = items[index].name;
-            return startsWith(itemName, term);
-        };
+    private filterByTerm(term: string): (typeItems: Array<ItemIdentifier>) => Array<ItemIdentifier> {
+        let query = new RegExp(term, 'ig');
+        return (typeItems: Array<ItemIdentifier>) => {
+            return typeItems.filter(item => query.test(item.name));
+        }
     }
 }

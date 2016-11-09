@@ -27,7 +27,8 @@ module.exports = {
             applicationStyles(),
             applicationTemplates()
         ]
-    }    
+    }
+    //plugins: [new webpack.ContextReplacementPlugin(/ng2-bootstrap/, /^$/)]
 };
 
 function html() {

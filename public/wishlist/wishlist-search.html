@@ -4,13 +4,13 @@
         <img *ngIf="!newItemMatch" src="/images/items/unknown_item.png"/>
     </div>
 
-    <input type="text"
-            (selectItem)="itemSelected($event.item)"
-            [ngbTypeahead]="search"
-            [resultFormatter]="format"
-            [inputFormatter]="format"
-            placeholder="Enter an item name"
-            class="form-control">
+    <input [(ngModel)]="searchTerm"
+         [typeahead]="dataSource"
+         (typeaheadOnSelect)="itemSelected($event.item)"
+         [typeaheadOptionsLimit]="10"
+         [typeaheadOptionField]="'name'"
+         placeholder="Enter an item name"
+         class="form-control">
     
     <div class="item_selection_button_container">
         <button (click)="acceptItemClicked()" type="button" class="btn btn-primary">Accept</button>
