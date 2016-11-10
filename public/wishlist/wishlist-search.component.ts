@@ -69,9 +69,12 @@ export class WishlistSearchComponent {
     }
 
     private filterByTerm(term: string): (typeItems: Array<ItemIdentifier>) => Array<ItemIdentifier> {
-        let query = new RegExp(term, 'ig');
+        let termLower = term.toLowerCase();
         return (typeItems: Array<ItemIdentifier>) => {
-            return typeItems.filter(item => query.test(item.name));
+            return typeItems.filter((item: Item) => {
+                let nameLower = item.name.toLowerCase();
+                return startsWith(nameLower, termLower);
+            });
         }
     }
 }
