@@ -1,3 +1,5 @@
+import { TestBed } from '@angular/core/testing';
+
 import { ComponentTestFixture } from 'tests/component/component.fixture';
 
 import { WishlistItem } from 'wishlist/model';

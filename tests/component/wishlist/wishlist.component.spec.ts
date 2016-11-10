@@ -9,6 +9,8 @@ import { ITEM_SLOTS, ItemSlot, Item, ItemIdentifier } from 'item/model';
 import { WishlistItem } from 'wishlist/model';
 import { Character } from 'character/model';
 
+import {details} from 'tests/component/item/item-test-data';
+
 const ALL_ITEM_SLOTS = values(ITEM_SLOTS);
 
 describe('WishlistComponent', () => {
@@ -209,6 +211,6 @@ describe('WishlistComponent', () => {
 
     function createFakeItem(slot: ItemSlot): Item {
         let identifier = new ItemIdentifier('anId', 'aName', slot.type);
-        return new Item(identifier, {});
+        return new Item(identifier, details);
     }
 });

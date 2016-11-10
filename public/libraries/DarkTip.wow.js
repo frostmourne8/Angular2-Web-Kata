@@ -88,6 +88,7 @@ window.DarkTip = {
                     }
                     var template = DarkTip.read(this['_meta']['module'], route);
                     var collect = [];
+                    
                     if (DarkTip.isTemplateString(template)) {
                         for (var i = 0; i < data.length; i++) {
                             if (typeof data[i] !== 'object') {
@@ -407,7 +408,6 @@ window.DarkTip = {
     },
 
     'buildSettings': function () {
-        console.info('jQuery:' + jQuery);
         jQuery.extend(true, this['data']['settings'], window.___DarkTipSettings);
     },
 
