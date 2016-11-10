@@ -20,7 +20,7 @@ npm start
 You can then navigate to <http://localhost:9000/webpack-dev-server> to launch the application
 
 ### Production build
-The command below will build and package the application for deployment. The production artifacts will be output to the **public/server** directory
+The command below will build and package the application for deployment. The production artifacts will be output to the **server/public** directory
 ```bash
 npm run build
 ```
