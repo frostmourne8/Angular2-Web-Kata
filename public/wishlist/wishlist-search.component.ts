@@ -56,6 +56,7 @@ export class WishlistSearchComponent {
 
     public clearItemClicked() {
         delete this.item.item;
+        this.item.collected = false;
     }
 
     public collectItemClicked() {
