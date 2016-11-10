@@ -24,11 +24,11 @@ module.exports = {
     module: {
         loaders: [
             html(),
+            jquery(),
             applicationStyles(),
             applicationTemplates()
         ]
     }
-    //plugins: [new webpack.ContextReplacementPlugin(/ng2-bootstrap/, /^$/)]
 };
 
 function html() {
@@ -41,4 +41,8 @@ function applicationTemplates() {
 
 function applicationStyles() {
     return { test: /\.css$/, include: appDir, loader: 'raw' };
+}
+
+function jquery() {
+    return { test: /libraries.+\.js$/, loader: 'imports?jQuery=jquery,this=>window' }
 }

@@ -18,7 +18,7 @@ export class RadialItemDirective {
 
         setTimeout(() => {
             this.renderer.setElementStyle(this.el.nativeElement, 'transform', transform);
-        }, 1000);        
+        }, 500);        
     }
 
     private getAngleForItem(index, count): number {

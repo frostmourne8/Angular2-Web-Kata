@@ -1,0 +1,9 @@
+.darktip-tooltip-wow .darktip-icon {
+    margin: 2px;
+}
+
+.darktip-tooltip-wow {
+    background-color: rgba(0,0,0,.85);
+    color: white;
+    border-radius: 10px;
+}

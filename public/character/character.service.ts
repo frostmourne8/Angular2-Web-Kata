@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Character } from 'character/model';
 
-const CHARACTER: Character = new Character('159055468', 'Anteaus', 'Alexstrasza-US');
+const CHARACTER: Character = new Character('159055468', 'Antaeus', 'Alexstrasza-US');
 
 @Injectable()
 export class CharacterService {

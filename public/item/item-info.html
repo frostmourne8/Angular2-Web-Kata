@@ -1,8 +1,1 @@
-<div [hidden]="!visible">Info for {{item}}</div>
-
-<!--
-<div ng-show="selectedMenuItem.item && (!hoveredItem || hoveredItem === selectedMenuItem.item)"
-             ng-bind-html="getItemInfoPane(selectedMenuItem.item)"
-             class="darktip-tooltip-wow item_info centered">
-        </div>
--->
+<div [hidden]="!visible" [innerHtml]="htmlContent" class="darktip-tooltip-wow"></div>

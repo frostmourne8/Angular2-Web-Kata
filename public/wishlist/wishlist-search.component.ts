@@ -16,9 +16,9 @@ require('images/checkmark.png');
 })
 export class WishlistSearchComponent {
 
-    @Input() item: WishlistItem;
     @Input() visible: boolean;
 
+    public item: WishlistItem;
     public searchTerm: string;
     public dataSource: Observable<Array<ItemIdentifier>>;
     public newItemMatch: Item;
@@ -31,6 +31,13 @@ export class WishlistSearchComponent {
           .flatMap((term: string) => {
               return this.executeSearch(term);
           });
+    }
+
+    @Input('item')
+    public set setWishlistItem(item: WishlistItem) {
+        this.item = item;
+        this.newItemMatch = this.item ? this.item.item : undefined;
+        this.searchTerm = this.newItemMatch ? this.newItemMatch.name : '';
     }
 
     public acceptItemClicked() {
