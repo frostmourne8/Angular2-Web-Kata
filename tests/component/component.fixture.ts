@@ -43,4 +43,8 @@ export class ComponentTestFixture<T> {
     protected element(id: string): DebugElement {
         return this.fixture.debugElement.query(By.css('#' + id));
     }
+
+    protected elementByClass(cssClass: string): DebugElement {
+        return this.fixture.debugElement.query(By.css('.' + cssClass));
+    }
 }

@@ -8,8 +8,13 @@ module.exports = (config) => {
         basePath: '',
         browserNoActivityTimeout: 60 * 1000, //For single runs that include webpack bundling
 
+<<<<<<< HEAD
         browsers: ['PhantomJS'],
         frameworks: ['jasmine', 'es6-shim'],
+=======
+        browsers: ['Chrome'],
+        frameworks: ['jasmine'],
+>>>>>>> Updated some testing structure
 
         phantomJsLauncher: {
             exitOnResourceError: true

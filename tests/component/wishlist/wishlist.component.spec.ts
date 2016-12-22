@@ -1,7 +1,7 @@
 import { difference, values } from 'lodash';
 
 import { WishlistComponent } from 'wishlist/wishlist.component';
-import { WishlistComponentFixture } from './wishlist.component.fixture';
+import { WishlistFixture } from './wishlist.fixture';
 import { WishlistSearchComponent } from 'wishlist/wishlist-search.component';
 import { ProfileImageComponent } from 'character/profile-image.component';
 import { ItemInfoComponent } from 'item/item-info.component';
@@ -16,10 +16,10 @@ const ALL_ITEM_SLOTS = values(ITEM_SLOTS);
 describe('WishlistComponent', () => {
 
     let character: Character;
-    let fixture: WishlistComponentFixture;
+    let fixture: WishlistFixture;
 
     beforeEach(() => {
-        fixture = new WishlistComponentFixture();
+        fixture = new WishlistFixture();
     });
 
     it('should display the profile image of the current character', () => {

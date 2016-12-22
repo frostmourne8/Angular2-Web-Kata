@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { ComponentTestFixture } from 'tests/component/component.fixture';
 
 import { WishlistItem } from 'wishlist/model';
@@ -14,7 +12,7 @@ import { ItemInfoComponent } from 'item/item-info.component';
 
 import { find } from 'lodash';
 
-export class WishlistComponentFixture extends ComponentTestFixture<WishlistComponent> {
+export class WishlistFixture extends ComponentTestFixture<WishlistComponent> {
 
     constructor() {
         super(WishlistModule, WishlistComponent);

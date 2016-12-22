@@ -16,6 +16,8 @@ export class WishlistItemComponent {
     constructor(private itemDataService: ItemDataService) { }
 
     public iconImage(item: WishlistItem): string {
+        if(!item) { return ''; }
+
         if(item.item) {
             return this.itemDataService.itemIcon(item.item); 
         } else {
