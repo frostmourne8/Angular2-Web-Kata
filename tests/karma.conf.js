@@ -9,7 +9,7 @@ module.exports = (config) => {
         browserNoActivityTimeout: 60 * 1000, //For single runs that include webpack bundling
 
         browsers: ['PhantomJS'],
-        frameworks: ['jasmine'],
+        frameworks: ['jasmine', 'es6-shim'],
 
         phantomJsLauncher: {
             exitOnResourceError: true
